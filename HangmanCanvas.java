@@ -12,8 +12,26 @@ import acm.graphics.GOval;
 
 @SuppressWarnings("serial")
 public class HangmanCanvas extends GCanvas {
+    
+    /* Constants for the simple version of the picture (in pixels) */
+    private GLabel label;
+    private int count = 0;
+    private static final int SCAFFOLD_OFFSET = 200;
+    private static final int SCAFFOLD_HEIGHT = 360;
+    private static final int BEAM_LENGTH = 144;
+    private static final int ROPE_LENGTH = 18;
+    private static final int HEAD_RADIUS = 36;
+    private static final int BODY_LENGTH = 144;
+    private static final int ARM_OFFSET_FROM_HEAD = 28;
+    private static final int UPPER_ARM_LENGTH = 72;
+    private static final int LOWER_ARM_LENGTH = 44;
+    private static final int HIP_WIDTH = 36;
+    private static final int LEG_LENGTH = 108;
+    private static final int FOOT_LENGTH = 28;
 
-    /** Resets the display so that only the scaffold appears */
+    /** 
+     * Resets the display so that only the scaffold appears 
+     */
     public void reset() {
         removeAll();
         drawScaf();
@@ -21,8 +39,10 @@ public class HangmanCanvas extends GCanvas {
         label = null;
     }
 
-    /** Draws the scaffold. */
-    private void drawScaf() {
+    /** 
+     * Draws the scaffold. 
+     */
+    public void drawScaf() {
         GLine line1 = new GLine(getWidth() / 2, getHeight() / 2
                 - SCAFFOLD_OFFSET, getWidth() / 2, getHeight() / 2
                 - SCAFFOLD_OFFSET - ROPE_LENGTH);
@@ -50,7 +70,9 @@ public class HangmanCanvas extends GCanvas {
         add(label, getWidth() / 4, (getHeight() / 4) * 3);
     }
 
-    /** Removes the label from the canvas. */
+    /** 
+     * Removes the label from the canvas. 
+     */
     private void clearLabel() {
         if (label != null) {
             remove(label);
@@ -92,7 +114,9 @@ public class HangmanCanvas extends GCanvas {
         count++;
     }
     
-    /** Display a misguessed letter on the window. */
+    /** 
+     * Display a misguessed letter on the window. 
+     */
     private void postLetter(char letter) {
         GLabel wrongLetters = new GLabel(String.valueOf(letter));
         wrongLetters.setFont("Ariel-15");
@@ -109,6 +133,9 @@ public class HangmanCanvas extends GCanvas {
         add(foot);
     }
     
+    /**
+     * Draws the right foot.
+     */
     private void createRightFoot() {
         GLine foot = new GLine(getWidth()
                 / 2 + HIP_WIDTH, getHeight() / 2 - SCAFFOLD_OFFSET
@@ -118,6 +145,9 @@ public class HangmanCanvas extends GCanvas {
         add(foot);
     }
     
+    /**
+     * Draws the left leg.
+     */
     private void createLeftLeg() {
         GLine hip = new GLine(getWidth() / 2, getHeight() / 2 - SCAFFOLD_OFFSET
                 + HEAD_RADIUS * 2 + BODY_LENGTH, getWidth() / 2 - HIP_WIDTH,
@@ -131,6 +161,9 @@ public class HangmanCanvas extends GCanvas {
         add(leg);
     }
     
+    /**
+     * Draws the right leg.
+     */
     private void createRightLeg() {
         GLine hip = new GLine(getWidth() / 2, getHeight() / 2 - SCAFFOLD_OFFSET
                 + HEAD_RADIUS * 2 + BODY_LENGTH, getWidth() / 2 + HIP_WIDTH,
@@ -144,6 +177,9 @@ public class HangmanCanvas extends GCanvas {
         add(leg);
     }
 
+    /**
+     * Draws the left arm.
+     */
     private void createLeftArm() {
         GLine arm = new GLine(getWidth() / 2, getHeight() / 2 - SCAFFOLD_OFFSET
                 + HEAD_RADIUS * 2 + ARM_OFFSET_FROM_HEAD, getWidth() / 2
@@ -158,6 +194,9 @@ public class HangmanCanvas extends GCanvas {
         add(hand);
     }
 
+    /**
+     * Draws the right arm.
+     */
     private void createRightArm() {
         GLine arm = new GLine(getWidth() / 2, getHeight() / 2 - SCAFFOLD_OFFSET
                 + HEAD_RADIUS * 2 + ARM_OFFSET_FROM_HEAD, getWidth() / 2
@@ -172,6 +211,9 @@ public class HangmanCanvas extends GCanvas {
         add(hand);
     }
 
+    /**
+     * Draws the body.
+     */
     private void createBody() {
         GLine body = new GLine(getWidth() / 2, getHeight() / 2
                 - SCAFFOLD_OFFSET + HEAD_RADIUS * 2, getWidth() / 2,
@@ -180,26 +222,12 @@ public class HangmanCanvas extends GCanvas {
         add(body);
     }
 
+    /**
+     * Draws the head.
+     */
     private void createHead() {
         GOval head = new GOval(HEAD_RADIUS * 2, HEAD_RADIUS * 2);
         add(head, getWidth() / 2 - HEAD_RADIUS, getHeight() / 2
                 - SCAFFOLD_OFFSET);
     }
-
-    /* Constants for the simple version of the picture (in pixels) */
-    private GLabel label;
-    private int count = 0;
-    private static final int SCAFFOLD_OFFSET = 200;
-    private static final int SCAFFOLD_HEIGHT = 360;
-    private static final int BEAM_LENGTH = 144;
-    private static final int ROPE_LENGTH = 18;
-    private static final int HEAD_RADIUS = 36;
-    private static final int BODY_LENGTH = 144;
-    private static final int ARM_OFFSET_FROM_HEAD = 28;
-    private static final int UPPER_ARM_LENGTH = 72;
-    private static final int LOWER_ARM_LENGTH = 44;
-    private static final int HIP_WIDTH = 36;
-    private static final int LEG_LENGTH = 108;
-    private static final int FOOT_LENGTH = 28;
-
 }
